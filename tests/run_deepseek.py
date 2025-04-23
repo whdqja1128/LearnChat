@@ -8,12 +8,11 @@ def generate(prompt: str) -> Iterable:
     llm = Llama.from_pretrained(
         repo_id="bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF",
         filename="DeepSeek-R1-Distill-Qwen-1.5B-IQ2_M.gguf",
-
     )
     stream = llm(prompt, max_tokens=80, stream=True)
 
     for chunk in stream:
-        yield chunk['choices'][0]['text']
+        yield chunk["choices"][0]["text"]
 
 
 if __name__ == "__main__":
@@ -23,5 +22,5 @@ if __name__ == "__main__":
     # Test 1. test generated
     print(f"Test 1. below is a generated text from a text ({sentence_part})")
     for chunk in stream:
-        print(chunk, flush=True, end='')
+        print(chunk, flush=True, end="")
     print()
